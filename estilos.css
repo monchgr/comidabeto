@@ -1,10 +1,10 @@
 :root {
-    --color-primary-green: #4CAF50;    /* Verde principal (Acción/Botón) */
-    --color-secondary-green: #8BC34A;  /* Verde secundario (Barra de progreso) */
+    --color-primary-green: #3BD59E;    /* Verde principal (Acción/Botón) */
+    --color-secondary-green: #6ADF77;  /* Verde secundario (Barra de progreso) */
     --color-text-dark: #3E2723;        /* Marrón oscuro para texto y encabezados principales */
-    --color-highlight: #FFB74D;        
+    --color-highlight: #F4FE04;        
     --color-background-soft: #F5F5F5;  
-    --color-h2-green: #2E7D32;        
+    --color-h2-green: #0FBBA5;        
 
     }
 body {
@@ -64,7 +64,7 @@ p {
 }
 
 button {
-    background-color: #4AB606;
+    background-color: var(--color-primary-green);
     border: none;
     color: white;
     padding: 15px 32px;
@@ -89,6 +89,7 @@ button {
 
 button:hover {
     background-color: var(--color-highlight);
+    color: gray;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -97,7 +98,7 @@ button:hover {
     width: 0;
     height: 40px;
     transition: width 0.3s ease;
-    background-color: #97DC28;
+    background: linear-gradient(90deg, #f8ff00 0%, #3ad59f 100%);
     border-radius: 25px;
 }
 
