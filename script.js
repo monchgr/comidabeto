@@ -18,12 +18,15 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Función para obtener la fecha actual en formato YYYY-MM-DD (UTC)
+// Función para obtener la fecha actual en formato YYYY-MM-DD (local)
 function obtenerFechaActual() {
   const fecha = new Date();
-  return fecha.toISOString().split("T")[0].trim();
-}
+  const year = fecha.getFullYear();
+  const month = String(fecha.getMonth() + 1).padStart(2, '0');
+  const day = String(fecha.getDate()).padStart(2, '0');
 
+  return `${year}-${month}-${day}`;
+}
 // Referencia al documento del contador
 const counterRef = db.collection("counters").doc("betoCounter");
 
