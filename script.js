@@ -43,29 +43,40 @@ function actualizarContadorDisplay() {
 async function cargarProgresoDesdeFirebase() {
     try {
         const doc = await counterRef.get();
+        let fechaActual = obtenerFechaActual();
         if (doc.exists) {
             const data = doc.data();
             const fechaGuardada = data.fecha;
             const progresoGuardado = data.progreso;
 
-            if (fechaGuardada === obtenerFechaActual()) {
+            if (fechaGuardada === fechaActual) {
                 progreso = progresoGuardado;
             } else {
+                // Nuevo día: reiniciar progreso en Firebase y localStorage
                 progreso = 0;
-                await counterRef.set({ progreso: 0, fecha: obtenerFechaActual() });
+                await counterRef.set({ progreso: 0, fecha: fechaActual });
+                localStorage.setItem('progreso', 0);
+                localStorage.setItem('fecha', fechaActual);
             }
         } else {
+            // Si el documento no existe, inicializarlo
             progreso = 0;
-            await counterRef.set({ progreso: 0, fecha: obtenerFechaActual() });
+            await counterRef.set({ progreso: 0, fecha: fechaActual });
+            localStorage.setItem('progreso', 0);
+            localStorage.setItem('fecha', fechaActual);
         }
         actualizarContadorDisplay();
     } catch (error) {
         console.error("Error al cargar el progreso desde Firebase: ", error);
         // Fallback a localStorage si falla Firebase
-        progreso = parseInt(localStorage.getItem('progreso')) || 0;
+        let fechaActual = obtenerFechaActual();
         let fechaGuardadaLocal = localStorage.getItem('fecha');
-        if (fechaGuardadaLocal !== obtenerFechaActual()) {
+        if (fechaGuardadaLocal === fechaActual) {
+            progreso = parseInt(localStorage.getItem('progreso')) || 0;
+        } else {
             progreso = 0;
+            localStorage.setItem('progreso', 0);
+            localStorage.setItem('fecha', fechaActual);
         }
         actualizarContadorDisplay();
     }
