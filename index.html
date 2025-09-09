@@ -11,7 +11,22 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="estilos.css" />
-    <link rel="shortcut icon" href="img/favicon.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon/favicon.svg" type="image/x-icon" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Beto" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
   </head>
 
   <body>
@@ -25,7 +40,7 @@
       </div>
       <p class="contador" id="contador">0/3</p>
       <button id="comidaButton">
-        <i class="fa-solid fa-bowl-food fa-2xl" style="color: #ffffff;"></i>
+        <i class="fa-solid fa-bowl-food fa-2xl" style="color: #ffffff"></i>
       </button>
     </main>
 
@@ -63,8 +78,6 @@
       </div>
 
       <div class="galeria">
-      
-
         <img
           src="img/beto durmiendo.jpeg"
           alt="Beto durmiendo"
@@ -72,27 +85,27 @@
         />
         <div class="flechas-contenedor">
           <span class="flecha" id="flechaIzq">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M15 19l-7-7 7-7"
-              stroke="#ffffff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </span>
-        <span class="flecha" id="flechaDer">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M9 5l7 7-7 7"
-              stroke="#ffffff"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </span>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M15 19l-7-7 7-7"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <span class="flecha" id="flechaDer">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M9 5l7 7-7 7"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
         </div>
       </div>
 
@@ -101,7 +114,10 @@
         <img class="lightbox-img" id="lightboxImg" src="" alt="" />
       </div>
     </section>
-    <script src="https://kit.fontawesome.com/b8f8edcb52.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/b8f8edcb52.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
