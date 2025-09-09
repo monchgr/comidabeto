@@ -4,57 +4,42 @@ let contadorElemento = document.getElementById('contador');
 
 let progreso = 0;
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Inicializa Firebase usando la versión compat
 const firebaseConfig = {
-    apiKey: "AIzaSyCvvwG_uMq9CO9xO395IGIZcqXHjWqmJDw",
-    authDomain: "comida-beto.firebaseapp.com",
-    projectId: "comida-beto",
-    storageBucket: "comida-beto.firebasestorage.app",
-    messagingSenderId: "1030903911178",
-    appId: "1:1030903911178:web:24067cce6f0877fac2a0f3",
-    measurementId: "G-E755HR5MYD"
+  apiKey: "AIzaSyCvvwG_uMq9CO9xO395IGIZcqXHjWqmJDw",
+  authDomain: "comida-beto.firebaseapp.com",
+  projectId: "comida-beto",
+  storageBucket: "comida-beto.firebasestorage.app",
+  messagingSenderId: "1030903911178",
+  appId: "1:1030903911178:web:24067cce6f0877fac2a0f3",
+  measurementId: "G-E755HR5MYD"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-// Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app); 
-
-// Get a reference to the 'betoCounter' document in the 'counters' collection
-// You can choose any collection and document name you like.
-const counterRef = doc(db, 'counters', 'betoCounter'); // Use doc() for Firestore document reference
-
-// Function to get current date in YYYY-MM-DD format
+// Función para obtener la fecha actual en formato YYYY-MM-DD
 function obtenerFechaActual() {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const day = String(today.getDate()).padStart(2, '0');
-    return `${day}-${month}-${year}`;
+    const fecha = new Date();
+    return fecha.toISOString().split('T')[0];
 }
 
-// Function to update the counter display
+// Referencia al documento del contador
+const counterRef = db.collection('counters').doc('betoCounter');
+
+// Actualiza el contador en pantalla
 function actualizarContadorDisplay() {
     if (progreso === 100) {
         contadorElemento.textContent = '¡Comida completa!';
-        comidaButton.style.display = 'none'; // Hide button when complete
+        comidaButton.style.display = 'none';
     } else {
         contadorElemento.textContent = `${Math.round(progreso / 33.3)}/3`;
-        comidaButton.style.display = ''; // Ensure button is visible
+        comidaButton.style.display = '';
     }
     barraProgreso.style.width = `${progreso}%`;
 }
 
-// Load progress from Firebase when the page loads
+// Carga el progreso desde Firebase al iniciar
 async function cargarProgresoDesdeFirebase() {
     try {
         const doc = await counterRef.get();
@@ -66,19 +51,17 @@ async function cargarProgresoDesdeFirebase() {
             if (fechaGuardada === obtenerFechaActual()) {
                 progreso = progresoGuardado;
             } else {
-                // If it's a new day, reset progress in Firebase and locally
                 progreso = 0;
                 await counterRef.set({ progreso: 0, fecha: obtenerFechaActual() });
             }
         } else {
-            // If the document doesn't exist, initialize it
             progreso = 0;
             await counterRef.set({ progreso: 0, fecha: obtenerFechaActual() });
         }
         actualizarContadorDisplay();
     } catch (error) {
         console.error("Error al cargar el progreso desde Firebase: ", error);
-        // Fallback to local storage if Firebase fails to load
+        // Fallback a localStorage si falla Firebase
         progreso = parseInt(localStorage.getItem('progreso')) || 0;
         let fechaGuardadaLocal = localStorage.getItem('fecha');
         if (fechaGuardadaLocal !== obtenerFechaActual()) {
@@ -88,25 +71,26 @@ async function cargarProgresoDesdeFirebase() {
     }
 }
 
-// Event listener for the button
+// Evento para el botón de comida
 comidaButton.addEventListener('click', async () => {
     if (progreso < 100) {
         progreso = Math.min(progreso + 33.3, 100);
         actualizarContadorDisplay();
         try {
-            // Update progress in Firebase
             await counterRef.set({ progreso: progreso, fecha: obtenerFechaActual() });
         } catch (error) {
             console.error("Error al guardar el progreso en Firebase: ", error);
+            // Guarda en localStorage si falla Firebase
+            localStorage.setItem('progreso', progreso);
+            localStorage.setItem('fecha', obtenerFechaActual());
         }
     }
 });
 
-// Load progress when the script runs
+// Carga el progreso al iniciar
 cargarProgresoDesdeFirebase();
 
-
-//Galería de imágenes con flechas
+// Galería de imágenes con flechas
 const imagenesGaleria = [
     { src: 'img/beto durmiendo.jpeg', alt: 'Beto durmiendo' },
     { src: 'img/beto con rosa.jpeg', alt: 'Beto comiendo' }
@@ -122,7 +106,6 @@ function mostrarImagen(indice) {
     imgGaleria.alt = imagenesGaleria[indice].alt;
 }
 
-//Flechas
 flechaIzq.addEventListener('click', () => {
     indiceActual = (indiceActual - 1 + imagenesGaleria.length) % imagenesGaleria.length;
     mostrarImagen(indiceActual);
@@ -134,27 +117,23 @@ flechaDer.addEventListener('click', () => {
 });
 mostrarImagen(indiceActual);
 
-//Lightbox para galería de imágenes
-const galeriaImgs = document.querySelectorAll('.galeria img');
+// Lightbox para galería de imágenes
+imgGaleria.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = imgGaleria.src;
+    lightboxImg.alt = imgGaleria.alt;
+});
+
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const cerrarLightbox = document.getElementById('cerrarLightbox');
 
-galeriaImgs.forEach(img => {
-    img.addEventListener('click', () => {
-        lightbox.style.display = 'flex';
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
-    })
-})
-
 cerrarLightbox.addEventListener('click', () => {
     lightbox.style.display = 'none';
-})
+});
 
-//Cerrar lightbox al hacer clic fuera de la imagen
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) {
         lightbox.style.display = 'none';
     }
-})
+});

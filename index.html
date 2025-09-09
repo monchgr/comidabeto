@@ -1,92 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es-ES">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>¿Comió Beto?</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Raleway:wght@700;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="estilos.css">
-    <link rel="shortcut icon" href="img/gato.png" type="image/x-icon">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="estilos.css" />
+    <link rel="shortcut icon" href="img/favicon.svg" type="image/x-icon" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <h1>¿Comió Beto?</h1>
-        <p>Toca el botón para registrar una comida</p>
+      <h1>¿Comió Beto?</h1>
+      <p id="instruccion">Toca el bowl para registrar una comida</p>
     </header>
     <main>
-        <div class="progresoContenedor">
-            <div class="barraProgreso" id="barraProgreso"></div>
-
-        </div>
-        <p class="contador" id="contador">0/3</p>
-        <button id="comidaButton">Comida</button>
+      <div class="progresoContenedor">
+        <div class="barraProgreso" id="barraProgreso"></div>
+      </div>
+      <p class="contador" id="contador">0/3</p>
+      <button id="comidaButton">
+        <i class="fa-solid fa-bowl-food fa-2xl" style="color: #ffffff;"></i>
+      </button>
     </main>
 
     <section>
-        <div class="texto">
-            <h2>¿Sabías que?</h2>
-            <h3>Un gato esterilizado necesita menos comida de la que imaginas</h3>
-            <p>Aunque suelen tener más apetito, su metabolismo se vuelve más lento. Por eso, un gato adulto esterilizado
-                de
-                tamaño medio (4 a 5 kg) debería consumir entre <strong>40 y 50 gramos</strong> de alimento seco al día,
-                dependiendo de la
-                marca y
-                su contenido calórico. Si le das comida húmeda, serían unos <strong>200 a 250 gramos</strong> diarios,
-                divididos en dos o
-                más
-                raciones.</p>
-            <h3>Controla su peso para evitar problemas de salud</h3>
-            <p>Controlar la cantidad que come es clave para su <strong>salud</strong>. Después de ser esterilizado, un
-                gato puede ganar
-                peso
-                fácilmente, lo que aumenta el riesgo de <strong>enfermedades</strong> como diabetes, problemas
-                articulares y urinarios.
-                Usar
-                balanzas y seguir las indicaciones del empaque (o mejor aún, del veterinario) evita el sobrepeso sin que
-                tu
-                gato
-                pase hambre.</p>
+      <div class="texto">
+        <h2>¿Sabías que?</h2>
+        <h3>Un gato esterilizado necesita menos comida de la que imaginas</h3>
+        <p>
+          Aunque suelen tener más apetito, su metabolismo se vuelve más lento.
+          Por eso, un gato adulto esterilizado de tamaño medio (4 a 5 kg)
+          debería consumir entre <strong>40 y 50 gramos</strong> de alimento
+          seco al día, dependiendo de la marca y su contenido calórico. Si le
+          das comida húmeda, serían unos
+          <strong>200 a 250 gramos</strong> diarios, divididos en dos o más
+          raciones.
+        </p>
+        <h3>Controla su peso para evitar problemas de salud</h3>
+        <p>
+          Controlar la cantidad que come es clave para su
+          <strong>salud</strong>. Después de ser esterilizado, un gato puede
+          ganar peso fácilmente, lo que aumenta el riesgo de
+          <strong>enfermedades</strong> como diabetes, problemas articulares y
+          urinarios. Usar balanzas y seguir las indicaciones del empaque (o
+          mejor aún, del veterinario) evita el sobrepeso sin que tu gato pase
+          hambre.
+        </p>
 
-            <p> Además, existen piensos especiales para gatos esterilizados: tienen menos calorías, más proteínas y
-                fibra,
-                lo
-                que ayuda a mantenerlo en forma, con buena masa muscular y sensación de saciedad. ¡Una ración adecuada
-                al
-                día
-                puede marcar la diferencia entre un gato sedentario y uno <strong>sano</strong> y lleno de
-                <strong>energía</strong>!</p>
+        <p>
+          Además, existen piensos especiales para gatos esterilizados: tienen
+          menos calorías, más proteínas y fibra, lo que ayuda a mantenerlo en
+          forma, con buena masa muscular y sensación de saciedad. ¡Una ración
+          adecuada al día puede marcar la diferencia entre un gato sedentario y
+          uno <strong>sano</strong> y lleno de <strong>energía</strong>!
+        </p>
+      </div>
+
+      <div class="galeria">
+      
+
+        <img
+          src="img/beto durmiendo.jpeg"
+          alt="Beto durmiendo"
+          id="imgGaleria"
+        />
+        <div class="flechas-contenedor">
+          <span class="flecha" id="flechaIzq">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M15 19l-7-7 7-7"
+              stroke="#ffffff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <span class="flecha" id="flechaDer">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M9 5l7 7-7 7"
+              stroke="#ffffff"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
         </div>
+      </div>
 
-        <div class="galeria">
-            <span class="flecha" id="flechaIzq">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                    <path d="M15 19l-7-7 7-7" stroke="#4AB606" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </span>
-
-            <img src="img/beto durmiendo.jpeg" alt="Beto durmiendo" id="imgGaleria">
-            <span class="flecha" id="flechaDer">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 5l7 7-7 7" stroke="#4AB606" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </span>
-        </div>
-
-        <div class="lightbox" id="lightbox">
-            <span class="cerrar" id="cerrarLightbox">&times;</span>
-            <img class="lightbox-img" id="lightboxImg" src="" alt="">
-        </div>
+      <div class="lightbox" id="lightbox">
+        <span class="cerrar" id="cerrarLightbox">&times;</span>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+      </div>
     </section>
-    
-
-    <script type="module" src="script.js"></script>
-</body>
-
+    <script src="https://kit.fontawesome.com/b8f8edcb52.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
