@@ -7,27 +7,50 @@ const urlsToCache = [
   '/favicon/favicon-96x96.png',
   '/favicon/favicon-192x192.png',
   '/favicon/favicon-512x512.png'
-  // Añade aquí todas las URL de los archivos estáticos que quieras cachear
 ];
 
-// Instalación del Service Worker y almacenamiento en caché de los archivos
+// Instalación: precache seguro
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Cache abierto');
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then(cache => {
+      return Promise.all(
+        urlsToCache.map(url =>
+          fetch(url)
+            .then(response => {
+              if (!response.ok) throw new Error(`Fallo al cachear ${url}`);
+              return cache.put(url, response);
+            })
+            .catch(err => console.warn(err))
+        )
+      );
+    })
   );
 });
 
-// Interceptación de peticiones para servir desde la caché
+// Activación: limpieza de caches antiguas
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames
+          .filter(name => name !== CACHE_NAME)
+          .map(name => caches.delete(name))
+      );
+    })
+  );
+});
+
+// Interceptación de fetch: cache first con fallback a red
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Si el recurso está en la caché, se devuelve. Si no, se hace la petición a la red.
-        return response || fetch(event.request);
-      })
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) return cachedResponse;
+      return fetch(event.request).catch(() => {
+        // Opcional: fallback si no hay conexión y recurso no está en cache
+        if (event.request.destination === 'document') {
+          return caches.match('/index.html');
+        }
+      });
+    })
   );
 });
