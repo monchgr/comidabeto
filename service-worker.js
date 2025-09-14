@@ -4,7 +4,9 @@ const urlsToCache = [
   '/index.html',
   '/estilos.css',
   '/script.js',
-  '/favicon/favicon-96x96.png'
+  '/favicon/favicon-96x96.png',
+  '/favicon/web-app-manifest-192x192.png',
+  '/favicon/web-app-manifest-512x512.png'
 ];
 
 // Instalación: precache seguro
