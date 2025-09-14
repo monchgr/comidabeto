@@ -7,6 +7,20 @@
   "background_color": "#00bcff",
   "theme_color": "#020618",
   "orientation": "portrait-primary",
+  "screenshots": [
+  {
+    "src": "images/screenshot1.png",
+    "sizes": "1280x720",
+    "type": "image/png"
+  }
+],
+"shortcuts": [
+  {
+    "name": "Inicio",
+    "url": "/",
+    "description": "Ir a la página principal"
+  }
+],
   "icons": [
     {
       "src": "favicon/favicon-96x96.png",
@@ -19,7 +33,7 @@
       "type": "image/png"
     },
     {
-      "src": "favicon/web-app-manifest-512x512.png",
+      "src": "images/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
