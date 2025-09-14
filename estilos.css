@@ -8,6 +8,7 @@
 }
 body {
   font-family: "DM Sans", sans-serif;
+  font-display: swap;
   color: var(--color-text-dark);
   background: #b8e6fe;
   background: linear-gradient(
@@ -280,4 +281,9 @@ section {
     padding: 0 12px;
     position: static;
   }
+}
+@font-face {
+  font-family: 'DM Sans';
+  src: url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+  font-display: swap;
 }

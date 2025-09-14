@@ -4,13 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>¿Comió Beto?</title>
+    <meta
+      name="description"
+      content="ComidaBeto: registro de comidas para Beto"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="estilos.css" />
+    <link
+      rel="preload"
+      href="estilos.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link rel="preload" href="script.js" as="script" />
+    <link rel="preload" href="estilos.css" as="style" />
+
+    <noscript><link rel="stylesheet" href="estilos.css" /></noscript>
+
     <link rel="shortcut icon" href="favicon/favicon.svg" type="image/x-icon" />
     <link
       rel="icon"
@@ -31,7 +46,9 @@
     <meta name="mobile-web-app-capable" content="yes" />
 
     <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" />
-  <link rel="manifest" href="manifest.json" /><link rel="manifest" href="manifest.json" />  <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
   </head>
 
   <body>
@@ -44,7 +61,7 @@
         <div class="barraProgreso" id="barraProgreso"></div>
       </div>
       <p class="contador" id="contador">0/3</p>
-      <button id="comidaButton">
+      <button id="comidaButton" aria-label="Registrar comida">
         <i class="fa-solid fa-bowl-food fa-2xl" style="color: #ffffff"></i>
       </button>
     </main>
@@ -125,7 +142,7 @@
     ></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
     <script>
       if ("serviceWorker" in navigator) {
