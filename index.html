@@ -4,51 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>¿Comió Beto?</title>
-    <meta
-      name="description"
-      content="ComidaBeto: registro de comidas para Beto"
-    />
+    <meta name="description" content="ComidaBeto: registro de comidas para Beto" />
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
       rel="stylesheet"
     />
+
+    <!-- CSS preload y defer -->
+     <link rel="preload" as="image" href="img/beto durmiendo.webp">
     <link
       rel="preload"
       href="estilos.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
-    <link rel="preload" href="script.js" as="script" />
-    <link rel="preload" href="estilos.css" as="style" />
-
     <noscript><link rel="stylesheet" href="estilos.css" /></noscript>
 
+    <!-- Favicons y manifest -->
     <link rel="shortcut icon" href="favicon/favicon.svg" type="image/x-icon" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="favicon/favicon-96x96.png"
-      sizes="96x96"
-    />
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
-    <link rel="shortcut icon" href="favicon/favicon.ico" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="favicon/apple-touch-icon.png"
-    />
-    <meta name="apple-mobile-web-app-title" content="Beto" />
-    <link rel="manifest" href="favicon/site.webmanifest" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="icon" href="favicon/favicon-96x96.png" sizes="96x96" type="image/png" />
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="manifest.json" />
     <meta name="mobile-web-app-capable" content="yes" />
 
-    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="manifest.json" />
-    <link rel="manifest" href="manifest.json" />
-    <link rel="manifest" href="/manifest.json" />
+    <!-- Preload JS -->
+    <link rel="preload" href="script.js" as="script" />
+
   </head>
 
   <body>
@@ -56,6 +41,7 @@
       <h1>¿Comió Beto?</h1>
       <p id="instruccion">Toca el bowl para registrar una comida</p>
     </header>
+
     <main>
       <div class="progresoContenedor">
         <div class="barraProgreso" id="barraProgreso"></div>
@@ -75,59 +61,29 @@
           Por eso, un gato adulto esterilizado de tamaño medio (4 a 5 kg)
           debería consumir entre <strong>40 y 50 gramos</strong> de alimento
           seco al día, dependiendo de la marca y su contenido calórico. Si le
-          das comida húmeda, serían unos
-          <strong>200 a 250 gramos</strong> diarios, divididos en dos o más
-          raciones.
+          das comida húmeda, serían unos <strong>200 a 250 gramos</strong> diarios,
+          divididos en dos o más raciones.
         </p>
         <h3>Controla su peso para evitar problemas de salud</h3>
         <p>
-          Controlar la cantidad que come es clave para su
-          <strong>salud</strong>. Después de ser esterilizado, un gato puede
-          ganar peso fácilmente, lo que aumenta el riesgo de
-          <strong>enfermedades</strong> como diabetes, problemas articulares y
-          urinarios. Usar balanzas y seguir las indicaciones del empaque (o
-          mejor aún, del veterinario) evita el sobrepeso sin que tu gato pase
-          hambre.
-        </p>
-
-        <p>
-          Además, existen piensos especiales para gatos esterilizados: tienen
-          menos calorías, más proteínas y fibra, lo que ayuda a mantenerlo en
-          forma, con buena masa muscular y sensación de saciedad. ¡Una ración
-          adecuada al día puede marcar la diferencia entre un gato sedentario y
-          uno <strong>sano</strong> y lleno de <strong>energía</strong>!
+          Controlar la cantidad que come es clave para su <strong>salud</strong>.
+          Después de ser esterilizado, un gato puede ganar peso fácilmente,
+          lo que aumenta el riesgo de <strong>enfermedades</strong> como diabetes,
+          problemas articulares y urinarios. Usar balanzas y seguir las indicaciones
+          del empaque (o del veterinario) evita el sobrepeso.
         </p>
       </div>
 
       <div class="galeria">
-        <img
-          src="img/beto durmiendo.jpeg"
-          alt="Beto durmiendo"
-          id="imgGaleria"
-        />
+        <!-- Espacio reservado con width/height para LCP -->
+<picture>
+  <source srcset="img/beto con rosa.webp" type="image/webp">
+  <source srcset="img/beto durmiendo.webp" type="image/webp">
+  <img src="img/beto durmiendo.jpeg" alt="Beto durmiendo" id="imgGaleria" width="600" height="400">
+</picture>
+
         <div class="flechas-contenedor">
-          <span class="flecha" id="flechaIzq">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M15 19l-7-7 7-7"
-                stroke="#ffffff"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
-          <span class="flecha" id="flechaDer">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M9 5l7 7-7 7"
-                stroke="#ffffff"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
+          <!-- Flechas SVG -->
         </div>
       </div>
 
@@ -136,25 +92,21 @@
         <img class="lightbox-img" id="lightboxImg" src="" alt="" />
       </div>
     </section>
-    <script
-      src="https://kit.fontawesome.com/b8f8edcb52.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/b8f8edcb52.js" crossorigin="anonymous" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js" defer></script>
     <script src="script.js" defer></script>
 
+    <!-- Service Worker -->
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("/service-worker.js")
-            .then((registration) => {
-              console.log("Service Worker registrado con éxito:", registration);
-            })
-            .catch((error) => {
-              console.log("Error al registrar el Service Worker:", error);
-            });
+            .register("/sw.js")
+            .then((registration) => console.log("SW registrado con éxito:", registration))
+            .catch((error) => console.log("Error al registrar SW:", error));
         });
       }
     </script>
